@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Conversión de Unidades</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Conversión de Unidades</h2>
+  <label for="valor">Valor:</label>
+  <input type="number" id="valor" placeholder="Ingresa el valor">
+
+  <label for="origen">De:</label>
+  <select id="origen">
+    <option value="mm">Milímetros</option>
+    <option value="cm">Centímetros</option>
+    <option value="m">Metros</option>
+  </select>
+
+  <label for="destino">A:</label>
+  <select id="destino">
+    <option value="mm">Milímetros</option>
+    <option value="cm">Centímetros</option>
+    <option value="m">Metros</option>
+  </select>
+
+  <button onclick="convertir()">Convertir</button>
+  <p id="resultado"></p>
+
+  <script>
+    function convertir() {
+      const valor = parseFloat(document.getElementById("valor").value);
+      const origen = document.getElementById("origen").value;
+      const destino = document.getElementById("destino").value;
+
+      let metros;
+
+      // Convertir a metros
+      if (origen === "mm") metros = valor / 1000;
+      else if (origen === "cm") metros = valor / 100;
+      else metros = valor;
+
+      // Convertir desde metros
+      let resultado;
+      if (destino === "mm") resultado = metros * 1000;
+      else if (destino === "cm") resultado = metros * 100;
+      else resultado = metros;
+
+      document.getElementById("resultado").textContent = `Resultado: ${resultado} ${destino}`;
+    }
+  </script>
+</body>
+</html>
